@@ -1,5 +1,5 @@
 flask==2.0.1
-pyrebase==4.8.0
+pyrebase
 firebase-admin==6.6.0
 requests
 gunicorn
