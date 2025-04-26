@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 font-sans min-h-screen">
+
+    <nav class="bg-blue-600 p-4 flex justify-between items-center shadow">
+        <h1 class="text-xl font-bold text-white">RetailX</h1>
+        <div class="flex items-center space-x-4">
+            <a href="/" class="text-white hover:underline">Home</a>
+            {% if session.get('user') %}
+                <a href="/cart" class="text-white hover:underline">
+                    Cart
+                    {% if session.get('cart') %}
+                        <span class="bg-white text-blue-600 font-bold rounded-full px-2 text-sm ml-1">
+                            {{ session['cart']|length }}
+                        </span>
+                    {% endif %}
+                </a>
+                <a href="/logout" class="text-white hover:underline">Logout</a>
+            {% else %}
+                <a href="/login" class="text-white hover:underline">Login</a>
+                <a href="/signup" class="text-white hover:underline">Signup</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="  container mx-auto py-6">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Toast Notifications in Bottom-Right Corner -->
+    <div class="fixed bottom-4 right-4 space-y-4 z-50">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div 
+                        x-data="{ show: true }" 
+                        x-init="setTimeout(() => show = false, 3000)" 
+                        x-show="show"
+                        x-transition
+                        class="p-4 w-72 rounded shadow-lg text-white transition-all duration-300 ease-in-out
+                            {% if category == 'success' %} bg-green-500
+                            {% elif category == 'info' %} bg-blue-500
+                            {% elif category == 'error' %} bg-red-500
+                            {% else %} bg-gray-700 {% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <footer class="bg-blue-800 text-white py-10 px-6 mt-10 shadow-inner">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Company Info -->
+            <div>
+                <h2 class="text-2xl font-extrabold text-white mb-4"><i class="fas fa-store mr-2"></i>RetailX</h2>
+                <p class="flex items-center mb-2">
+                    <i class="fas fa-envelope mr-2 text-blue-200"></i>RetailXIOT@gmail.com
+                </p>
+                <p class="flex items-center mb-2">
+                    <i class="fas fa-phone-alt mr-2 text-blue-200"></i>07412 345 67
+                </p>
+                <p class="flex items-start">
+                    <i class="fas fa-map-marker-alt mr-2 text-blue-200 mt-1"></i>
+                    Unit 7, TechHub Industrial Estate,<br>
+                    25 Innovation Way, London,<br>
+                    E16 4QX, United Kingdom
+                </p>
+            </div>
+    
+            <!-- About Us -->
+            <div class="col-span-2">
+                <h2 class="text-2xl font-semibold mb-4"><i class="fas fa-info-circle mr-2"></i>About Us</h2>
+                <p class="text-sm text-blue-100 leading-relaxed mb-2">
+                    At RetailX, we believe in powering the future through technology. Founded with the vision of 
+                    transforming retail and automation industries, we bring deep expertise in electronic systems, 
+                    smart components, and tech infrastructure that drive performance and sustainability.
+                </p>
+                <p class="text-sm text-blue-100 leading-relaxed mb-2">
+                    Whether you’re a business seeking custom electronic specifications, prototyping, or mass 
+                    deployment, our experienced team ensures top-notch quality, timely delivery, and continued 
+                    support throughout your project lifecycle. From microcontrollers and sensors to advanced 
+                    communication modules and embedded systems, RetailX is your trusted partner in innovation.
+                </p>
+                <p class="text-sm text-blue-100 leading-relaxed italic">Let’s build the future of tech, together.</p>
+            </div>
+        </div>
+    
+    </footer>
+
+</body>
+</html>

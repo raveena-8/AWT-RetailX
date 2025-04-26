@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-2xl mb-4 font-semibold">IoT Products</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {% for p in products %}
+    <div class="bg-white shadow-md rounded p-4">
+        <img src="{{ p.image }}" alt="{{ p.name }}" class="h-48 w-full object-cover mb-4">
+        <h3 class="text-lg font-bold">{{ p.name }}</h3>
+        <p class="text-sm text-gray-600">{{ p.description }}</p>
+        <p class="text-yellow-600 font-bold mt-2">£{{ p.price }}</p>
+        <a href="/product/{{ p.name }}" class="text-blue-600 mt-2 inline-block">View</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
