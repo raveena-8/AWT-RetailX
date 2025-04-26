@@ -4,3 +4,4 @@ pyrebase4
 firebase-admin
 cryptography==44.0.1
 pyOpenSSL==25.0.0
+Werkzeug==2.0.3
