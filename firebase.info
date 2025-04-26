@@ -1,0 +1,8 @@
+  const firebaseConfig = {
+    apiKey: "AIzaSyC642k3x2TRB9T-Hwxvnws6W3YV1kv1Le0",
+    authDomain: "iot-website-f5b1e.firebaseapp.com",
+    projectId: "iot-website-f5b1e",
+    storageBucket: "iot-website-f5b1e.firebasestorage.app",
+    messagingSenderId: "783901551",
+    appId: "1:783901551:web:b6f0115d414b19af723e9a"
+  };
