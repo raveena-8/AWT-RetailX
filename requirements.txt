@@ -1,5 +1,4 @@
-flask==2.0.1
-pyrebase
-firebase-admin==6.6.0
-requests
 gunicorn
+Flask
+pyrebase4
+firebase-admin
